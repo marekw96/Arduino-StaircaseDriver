@@ -1,5 +1,4 @@
-#ifndef OutputPin_H
-#define OutputPin_H
+#pragma once
 
 class OutputPin
 {
@@ -8,5 +7,3 @@ public:
 	virtual ~OutputPin() = default;
 	virtual void set(char value) = 0;
 };
-
-#endif

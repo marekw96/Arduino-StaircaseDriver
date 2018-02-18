@@ -1,7 +1,7 @@
 #pragma once
 #include <PCF8574.h>
-#include "OutputPin.h"
-#include "Utility.h"
+#include "OutputPin.hpp"
+#include "Utility.hpp"
 #include <elapsedMillis.h>
 
 class LedsController

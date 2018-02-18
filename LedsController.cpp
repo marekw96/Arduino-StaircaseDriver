@@ -1,6 +1,6 @@
-#include "LedsController.h"
-#include "PCF8574OutputPin.h"
-#include "ArduinoOutputPin.h"
+#include "LedsController.hpp"
+#include "PCF8574OutputPin.hpp"
+#include "ArduinoOutputPin.hpp"
 
 
 LedsController::LedsController()

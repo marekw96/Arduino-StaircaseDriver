@@ -21,7 +21,7 @@ namespace DEF
 							OFF};
 
 	const int TURNING_ON_TIME = 1000;
-	const int TIME_TO_TURNING_OFF = 5000;
+	const int TIME_TO_TURNING_OFF = 0;
 	const int TURNING_OFF_TIME = 1000;
 
 	enum class DIRECTION { BOTTOM, TOP};

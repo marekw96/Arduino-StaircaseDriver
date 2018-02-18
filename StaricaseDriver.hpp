@@ -1,7 +1,7 @@
 #pragma once
-#include "LedsController.h"
-#include "MotionSensorController.h"
-#include "Utility.h"
+#include "LedsController.hpp"
+#include "MotionSensorController.hpp"
+#include "Utility.hpp"
 #include <elapsedMillis.h>
 
 class StaircaseDriver

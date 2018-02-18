@@ -1,6 +1,6 @@
-#include "MotionSensorController.h"
+#include "MotionSensorController.hpp"
 #include <Arduino.h>
-#include "Utility.h"
+#include "Utility.hpp"
 
 bool MotionSensorController::bottom_sensor_interrupt = false;
 bool MotionSensorController::top_sensor_interrupt = false;

@@ -1,17 +1,14 @@
-#ifndef ArduinoOutputPin_H
-#define ArduinoOutputPin_H
+#pragma once
 
-#include "OutputPin.h"
+#include "OutputPin.hpp"
 
 class ArduinoOutputPin : public OutputPin
 {
 public:
 	explicit ArduinoOutputPin(int pin);
 	~ArduinoOutputPin() = default;
-	void set(char value);
+	void set(char value) override;
 
 private:
 	int pin_number;
 };
-
-#endif

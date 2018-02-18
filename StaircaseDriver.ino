@@ -1,4 +1,4 @@
-#include "StaricaseDriver.h"
+#include "StaricaseDriver.hpp"
 
 StaircaseDriver driver;
 void setup() {

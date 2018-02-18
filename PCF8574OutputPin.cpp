@@ -1,4 +1,4 @@
-#include "PCF8574OutputPin.h"
+#include "PCF8574OutputPin.hpp"
 #include <Arduino.h> 
 
 PCF8574OutputPin::PCF8574OutputPin(PCF8574& expander, int pin) : OutputPin{}, expander{expander}, pin_number{pin}

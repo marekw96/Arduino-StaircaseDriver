@@ -1,4 +1,4 @@
-#include "StaricaseDriver.h"
+#include "StaricaseDriver.hpp"
 #include "Arduino.h"
 
 StaircaseDriver::StaircaseDriver()

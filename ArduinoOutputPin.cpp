@@ -1,4 +1,4 @@
-#include "ArduinoOutputPin.h"
+#include "ArduinoOutputPin.hpp"
 #include <Arduino.h> 
 
 ArduinoOutputPin::ArduinoOutputPin(int pin) : OutputPin{}, pin_number{pin}
