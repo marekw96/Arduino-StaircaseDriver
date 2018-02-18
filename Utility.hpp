@@ -40,4 +40,7 @@ namespace DEF
 	const int SENSOR_SIGNAL_ON = LOW;
 
 	const int SENSOR_INTERRUPT_TYPE = FALLING;
+
+	const int SLEEP_AFTER = 2500;
+	const int SLEEP_MODE = SLEEP_MODE_PWR_DOWN;
 }

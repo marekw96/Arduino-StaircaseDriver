@@ -1,14 +1,16 @@
 #include "StaricaseDriver.hpp"
 #include "Arduino.h"
+#include <avr/sleep.h>
 
 StaircaseDriver::StaircaseDriver()
-	: leds{}, motion_sensor{}, time_from_turned_leds{ 0 }
+	: leds{}, motion_sensor{}, time_from_turned_leds{ 0 }, time_from_last_activity{ 0 }
 {
 }
 
 void StaircaseDriver::init()
 {
-	Serial.begin(9600);
+	set_sleep_mode(DEF::SLEEP_MODE);
+	sleep_enable();
 
 	leds.init();
 	motion_sensor.init();
@@ -16,20 +18,44 @@ void StaircaseDriver::init()
 
 void StaircaseDriver::step()
 {
-	auto interrupts = motion_sensor.get_interrupts();
+	sleep_if_possible();
 
-	if (leds.get_status() == DEF::LEDS_STATUS::ON)
+	turn_leds_off_if_possible();
+	handle_sensors();
+
+	leds.step();
+	motion_sensor.step();
+}
+
+void StaircaseDriver::turn_off_leds()
+{
+	leds.step_off_to(direction);
+}
+
+bool StaircaseDriver::could_turn_off()
+{
+	return time_from_turned_leds > DEF::TIME_TO_TURNING_OFF;
+}
+
+void StaircaseDriver::sleep_if_possible()
+{
+	if (leds.get_status() == DEF::LEDS_STATUS::OFF)
 	{
-		if (could_turn_off())
+		if (time_from_last_activity > DEF::SLEEP_AFTER)
 		{
-			turn_off_leds();
+			sleep_mode();
+			sleep_disable();
 		}
 	}
 	else
 	{
-		time_from_turned_leds = 0;
+		time_from_last_activity = 0;
 	}
+}
 
+void StaircaseDriver::handle_sensors()
+{
+	auto interrupts = motion_sensor.get_interrupts();
 	if (interrupts & DEF::SENSOR_INTERRUPT::TOP)
 	{
 		direction = DEF::DIRECTION::TOP;
@@ -45,18 +71,20 @@ void StaircaseDriver::step()
 		leds.step_on_to(direction);
 		time_from_turned_leds = 0;
 	}
-
-	leds.step();
-	motion_sensor.step();
 }
 
-void StaircaseDriver::turn_off_leds()
+void StaircaseDriver::turn_leds_off_if_possible()
 {
-	leds.step_off_to(direction);
-}
-
-bool StaircaseDriver::could_turn_off()
-{
-	return time_from_turned_leds > DEF::TIME_TO_TURNING_OFF;
+	if (leds.get_status() == DEF::LEDS_STATUS::ON)
+	{
+		if (could_turn_off())
+		{
+			turn_off_leds();
+		}
+	}
+	else
+	{
+		time_from_turned_leds = 0;
+	}
 }
 
