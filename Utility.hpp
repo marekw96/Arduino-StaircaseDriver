@@ -26,8 +26,8 @@ namespace DEF
 
 	enum class DIRECTION { BOTTOM, TOP};
 
-	const int BOTTOM_SENSOR_PIN = 2;
-	const int TOP_SENSOR_PIN = 3;
+	const int BOTTOM_SENSOR_PIN = 20  ;
+	const int TOP_SENSOR_PIN = 21;
 
 	namespace SENSOR_INTERRUPT
 	{
@@ -36,6 +36,7 @@ namespace DEF
 	}
 
 	const int LEDS_NUM = 18;
+  const int START_LED = 22;
 
 	const int SENSOR_SIGNAL_ON = LOW;
 

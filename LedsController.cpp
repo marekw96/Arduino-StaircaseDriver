@@ -1,5 +1,4 @@
 #include "LedsController.hpp"
-#include "PCF8574OutputPin.hpp"
 #include "ArduinoOutputPin.hpp"
 
 
@@ -11,34 +10,20 @@ LedsController::LedsController()
 
 LedsController::~LedsController()
 {
-	for (auto pin : pins)
-		delete pin;
+//	for (auto pin : pins)
+//		delete pin;
 }
 
 void LedsController::init()
 {
-	expander_1.begin(DEF::ExpanderAddress::FIRST);
-	expander_2.begin(DEF::ExpanderAddress::SECOND);
 
-	int i = 0;
-	pins[i++] = new PCF8574OutputPin(expander_1, 0);
-	pins[i++] = new PCF8574OutputPin(expander_1, 1);
-	pins[i++] = new PCF8574OutputPin(expander_1, 2);
-	pins[i++] = new PCF8574OutputPin(expander_1, 3);
-	pins[i++] = new PCF8574OutputPin(expander_1, 4);
-	pins[i++] = new PCF8574OutputPin(expander_1, 5);
-	pins[i++] = new PCF8574OutputPin(expander_1, 6);
-	pins[i++] = new PCF8574OutputPin(expander_1, 7);
-	pins[i++] = new PCF8574OutputPin(expander_2, 0);
-	pins[i++] = new PCF8574OutputPin(expander_2, 1);
-	pins[i++] = new PCF8574OutputPin(expander_2, 2);
-	pins[i++] = new PCF8574OutputPin(expander_2, 3);
-	pins[i++] = new PCF8574OutputPin(expander_2, 4);
-	pins[i++] = new PCF8574OutputPin(expander_2, 5);
-	pins[i++] = new PCF8574OutputPin(expander_2, 6);
-	pins[i++] = new PCF8574OutputPin(expander_2, 7);
-	pins[i++] = new ArduinoOutputPin(11);
-	pins[i++] = new ArduinoOutputPin(12);
+//	int i = 0;
+//	pins[i++] = new ArduinoOutputPin(22);
+//	pins[i++] = new ArduinoOutputPin(23);
+  
+  for(int i = 0; i < DEF::LEDS_NUM; ++i)
+    pins[i] = new ArduinoOutputPin(DEF::START_LED + i);
+    
 
 	turn_off();
 }
@@ -200,4 +185,3 @@ void LedsController::led_step_off_from_bottom()
 		actual_step = max_led_index;
 	}
 }
-

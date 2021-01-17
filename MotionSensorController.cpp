@@ -26,10 +26,17 @@ void MotionSensorController::init()
 		bottom_sensor_interrupt_method,
 		DEF::SENSOR_INTERRUPT_TYPE);
 
+  Serial.print("Register interrupt pin");
+  Serial.println(DEF::BOTTOM_SENSOR_PIN);
+  Serial.print("digitalPinToInterrupt");
+  Serial.println(digitalPinToInterrupt(DEF::BOTTOM_SENSOR_PIN));
+  
 	pinMode(DEF::TOP_SENSOR_PIN, INPUT_PULLUP);
 	attachInterrupt(digitalPinToInterrupt(DEF::TOP_SENSOR_PIN),
 		top_sensor_interrupt_method,
 		DEF::SENSOR_INTERRUPT_TYPE);
+
+    //Serial.println("Register interrupt pin %d interrupt %d",DEF::TOP_SENSOR_PIN, digitalPinToInterrupt(DEF::TOP_SENSOR_PIN)); 
 }
 
 void MotionSensorController::step()
@@ -39,12 +46,12 @@ void MotionSensorController::step()
 
 	if (digitalRead(DEF::BOTTOM_SENSOR_PIN) == DEF::SENSOR_SIGNAL_ON)
 	{
-		bottom_sensor_interrupt = true;
+	//	bottom_sensor_interrupt = true;
 	}
 
 	if (digitalRead(DEF::TOP_SENSOR_PIN) == DEF::SENSOR_SIGNAL_ON)
 	{
-		top_sensor_interrupt = true;
+	//	top_sensor_interrupt = true;
 	}
 }
 
@@ -57,7 +64,8 @@ int MotionSensorController::get_interrupts()
 	if (top_sensor_interrupt)
 		result |= DEF::SENSOR_INTERRUPT::TOP;
 
+   //Serial.print("Interrupt result ");
+   //Serial.println(result, 2);
+
 	return result;
 }
-
-

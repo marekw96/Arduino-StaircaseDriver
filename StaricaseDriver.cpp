@@ -9,6 +9,9 @@ StaircaseDriver::StaircaseDriver()
 
 void StaircaseDriver::init()
 {
+  // prints title with ending line break
+  Serial.println("ASCII Table ~ Character Map");
+  
 	set_sleep_mode(DEF::SLEEP_MODE);
 	sleep_enable();
 
@@ -18,7 +21,7 @@ void StaircaseDriver::init()
 
 void StaircaseDriver::step()
 {
-	sleep_if_possible();
+	//sleep_if_possible();
 
 	turn_leds_off_if_possible();
 	handle_sensors();
@@ -87,4 +90,3 @@ void StaircaseDriver::turn_leds_off_if_possible()
 		time_from_turned_leds = 0;
 	}
 }
-
