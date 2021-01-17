@@ -113,12 +113,12 @@ void LedsController::step_on_to(DEF::DIRECTION direction)
  
   if(additional_status == DEF::LEDS_STATUS::OFF)
   {
-    if(status == DEF::LEDS_STATUS::TURNING_ON_TO_BOTTOM)
+    if(direction == DEF::DIRECTION::TOP && status == DEF::LEDS_STATUS::TURNING_ON_TO_BOTTOM)
     {
           additional_step = 0;
           additional_status = DEF::LEDS_STATUS::TURNING_ON_TO_TOP;    
     }
-    else if(status == DEF::LEDS_STATUS::TURNING_ON_TO_TOP)
+    else if(direction == DEF::DIRECTION::BOTTOM && status == DEF::LEDS_STATUS::TURNING_ON_TO_TOP)
     {
           additional_step = max_led_index;
           additional_status = DEF::LEDS_STATUS::TURNING_ON_TO_BOTTOM;    
@@ -174,7 +174,7 @@ void LedsController::led_step_on_to_top_additional()
 
   pins[additional_step++]->set(DEF::ON);
 
-  if (additional_step > max_led_index || additional_step >= actual_step)
+  if (additional_step > max_led_index || additional_step > actual_step)
   {
     additional_status = DEF::LEDS_STATUS::ON;
     additional_step = max_led_index;
@@ -206,7 +206,7 @@ void LedsController::led_step_on_to_bottom_additional()
     
   pins[additional_step--]->set(DEF::ON);
 
-  if (additional_step < 0 || additional_step <= actual_step)
+  if (additional_step < 0 || additional_step < actual_step)
   {
     additional_status = DEF::LEDS_STATUS::ON;
     additional_step = 0;
