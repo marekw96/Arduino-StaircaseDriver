@@ -21,12 +21,16 @@ private:
 	void led_step_on_to_bottom();
 	void led_step_off_from_top();
 	void led_step_off_from_bottom();
+  void led_step_on_to_top_additional();
+  void led_step_on_to_bottom_additional();
 
 	OutputPin* pins[DEF::LEDS_NUM];
 	int max_led_index;
 
 	DEF::LEDS_STATUS leds_status;
 	int actual_step;
+  int additional_step;
+  DEF::LEDS_STATUS additional_status;
 	elapsedMillis step_last_activity;
+  elapsedMillis additional_step_last_acitivity;
 };
-
